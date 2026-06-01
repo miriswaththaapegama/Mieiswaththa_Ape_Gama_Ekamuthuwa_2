@@ -727,7 +727,30 @@ footer a:hover{text-decoration:underline;}
             බැංකු මාරු කිරීමෙන් පසු රිසිට් පත ඡායාරූපයක් ගෙන පහත ඔබ්බූ Google Form හරහා ඉදිරිපත් කරන්න.
           </p>
         </div>
-        <a href="https://formspree.io/f/mbdbvazn" target="_blank" class="btn btn-navy btn-sm" style="width:100%;justify-content:center;">📤 රිසිට් ඉදිරිපත් කරන්න</a>
+        <form action="https://formspree.io/f/mbdbvazn" method="POST" enctype="multipart/form-data" style="margin-top: 20px; display: flex; flex-direction: column; gap: 12px; text-align: left;">
+  
+  <div>
+    <label style="font-size: 13px; font-weight: bold; color: var(--navy); display: block; margin-bottom: 5px;">සාමාජික අංකය / නම:</label>
+    <input type="text" name="member_details" placeholder="උදා: 190 - කසුන් " required style="width: 100%; padding: 10px; border: 1.5px solid var(--gray-2); border-radius: 6px; outline: none;">
+  </div>
+
+  <div>
+    <label style="font-size: 13px; font-weight: bold; color: var(--navy); display: block; margin-bottom: 5px;">ඔබේ ඊමේල් ලිපිනය (Email):</label>
+    <input type="email" name="email" placeholder="example@gmail.com" required style="width: 100%; padding: 10px; border: 1.5px solid var(--gray-2); border-radius: 6px; outline: none;">
+  </div>
+
+  <div>
+    <label style="font-size: 13px; font-weight: bold; color: var(--navy); display: block; margin-bottom: 5px;">ගෙවූ මාසය / විස්තර:</label>
+    <input type="text" name="message" placeholder="උදා: 2026 ජනවාරි සහ පෙබරවාරි සඳහා" required style="width: 100%; padding: 10px; border: 1.5px solid var(--gray-2); border-radius: 6px; outline: none;">
+  </div>
+
+  <div>
+    <label style="font-size: 13px; font-weight: bold; color: var(--navy); display: block; margin-bottom: 5px;">රිසිට්පතෙහි ඡායාරූපය (Receipt Image):</label>
+    <input type="file" name="receipt" accept="image/*" required style="width: 100%; padding: 8px; background: #fff; border: 1.5px dashed var(--navy-light); border-radius: 6px; cursor: pointer;">
+  </div>
+
+  <button type="submit" class="btn btn-navy" style="width: 100%; justify-content: center; padding: 12px; font-weight: bold; margin-top: 8px;">📤 රිසිට්පත සාර්ථකව ඉදිරිපත් කරන්න</button>
+</form>
       </div>
     </div>
   </div>
