@@ -537,10 +537,46 @@ footer a:hover{text-decoration:underline;}
   <div class="header-inner">
     <a class="logo" href="#home">
       <!-- Logo -->
-      <div class="logo-icon">
-    <img src="images/logo.jpg" alt="Miriswatta Ape Gama Logo">
-</div>
+<div class="logo-icon">
+        <img src="images/logo.jpg" alt="Miriswatta Ape Gama Logo">
+      </div>
       <span>මිරිස්වත්ත අපේ ගම</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="nav">
+      <a href="#home" onclick="closeNav()">මුල් පිටුව</a>
+      <a href="#about" onclick="closeNav()">අප ගැන</a>
+      <a href="#committee" onclick="closeNav()">නිලධාරීන්</a>
+      <a href="#decisions" onclick="closeNav()">තීරණ</a>
+      <a href="#documents" onclick="closeNav()">ලිපි ලේඛන</a>
+      <a href="#portal" onclick="closeNav()">සාමාජික පියස</a>
+      <a href="#gallery" onclick="closeNav()">ගැලරිය</a>
+      <a href="#contact" onclick="closeNav()">සම්බන්ධ කරන්න</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+.logo-icon {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+.logo-icon img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+</style>
     </a>
     <button class="hamburger" id="hamburger" aria-label="menu">
       <span></span><span></span><span></span>
