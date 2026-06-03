@@ -692,7 +692,7 @@ footer a:hover{text-decoration:underline;}
       <div id="result"></div>
     </div>
     <!-- Join -->
-    <div class="portal-box">
+<div class="portal-box">
       <div class="portal-box-title">📝 ලියාපදිංචිය සහ ගෙවීම</div>
       <div class="portal-box-sub">නව සාමාජිකත්වය හා ගෙවීම් ක්‍රමය</div>
       <div class="join-box">
@@ -702,20 +702,116 @@ footer a:hover{text-decoration:underline;}
           ඔබේ පවුල ලියාපදිංචි කරගෙන අපගේ ප්‍රජාවේ කොටස් කාරයෙකු වන්න.
         </div>
         <a href="https://forms.gle/FdtpB4MKMPhybQp37" target="_blank" class="btn btn-gold" style="width:100%;justify-content:center;margin-bottom:24px;">📝 ලියාපදිංචි වීමේ පෝරමය</a>
-        <div class="bank-info">
-          <h4>🏦 ගෙවීම් කරන ආකාරය</h4>
-          <p>
+        
+        <div class="bank-info" style="background: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #fdbb2d; margin-bottom: 20px;">
+          <h4 style="margin-top: 0; color: #1a2a6c;">🏦 ගෙවීම් කරන ආකාරය</h4>
+          <p style="font-size: 14px; line-height: 1.6; margin-bottom: 0;">
             <strong>ගෙවිය යුතු මාසික ගාස්තුව:</strong> රු.500/=<br>
             <strong>බැංකු ගිණුම:</strong> [ගිණුම් අංකය ඇතුලත් කරන්න]<br>
             <strong>ශාඛාව:</strong> [ශාඛාව ඇතුලත් කරන්න]<br><br>
-            බැංකු මාරු කිරීමෙන් පසු රිසිට් පත ඡායාරූපයක් ගෙන පහත ඔබ්බූ Google Form හරහා ඉදිරිපත් කරන්න.
+            බැංකු මාරු කිරීමෙන් පසු රිසිට් පත ඡායාරූපයක් හෝ PDF එකක් ගෙන පහත පෝරමය මඟින් සෘජුවම ඉදිරිපත් කරන්න.
           </p>
         </div>
-        <a href="https://formspree.io/f/mbdbvazn" target="_blank" class="btn btn-navy btn-sm" style="width:100%;justify-content:center;">📤 රිසිට් ඉදිරිපත් කරන්න</a>
+
+        <div style="background: #ffffff; border: 1px solid #e0e0e0; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+          <h4 style="margin-top: 0; color: #1a2a6c; text-align: center; margin-bottom: 15px;">📤 රිසිට් පත මෙතැනින් උඩුගත කරන්න</h4>
+          
+          <form id="receiptForm">
+            <div style="margin-bottom: 12px;">
+              <label style="display:block; margin-bottom:5px; font-weight:600; font-size:13px; color:#555;">සාමාජිකයාගේ නම:</label>
+              <input type="text" id="memberName" required placeholder="ඔබේ සම්පූර්ණ නම" style="width:100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+            </div>
+            
+            <div style="margin-bottom: 12px;">
+              <label style="display:block; margin-bottom:5px; font-weight:600; font-size:13px; color:#555;">දුරකථන අංකය:</label>
+              <input type="text" id="memberPhone" required placeholder="07XXXXXXXX" style="width:100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+              <label style="display:block; margin-bottom:5px; font-weight:600; font-size:13px; color:#555;">ගෙවීම් රිසිට්පත (ඡායාරූපය/PDF):</label>
+              <input type="file" id="receiptFile" accept="image/*,application/pdf" required style="width:100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; background: #fcfcfc;">
+            </div>
+            
+            <button type="submit" id="submitBtn" style="width:100%; background-color:#1a2a6c; color:white; padding:12px; border:none; border-radius:6px; font-size:15px; font-weight:bold; cursor:pointer; transition:all 0.3s;">දත්ත ඇතුළත් කරන්න 🚀</button>
+          </form>
+          
+          <div id="uploadMessage" style="margin-top: 15px; padding: 10px; border-radius: 6px; text-align: center; font-weight: bold; font-size: 14px; display: none;"></div>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
+
+<script>
+    // ⚠️ ඔබ ලබාගත් Google Web App URL එක පහත " " ඇතුළත පේස්ට් කරන්න
+    const googleWebAppUrl = "https://script.google.com/macros/s/AKfycbyN6HXgv8Q7Kf50aScNMDVSPsfdrzEGQ0GSr0T_2GgWBJdxpm__9ut0uzH0ufPmANDo/exec";
+
+    document.getElementById('receiptForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = document.getElementById('submitBtn');
+        const messageDiv = document.getElementById('uploadMessage');
+        const fileInput = document.getElementById('receiptFile');
+        const file = fileInput.files[0];
+        
+        submitBtn.disabled = true;
+        submitBtn.style.backgroundColor = "#555";
+        submitBtn.innerText = "මදක් රැඳී සිටින්න... ⏳";
+        messageDiv.style.display = "none";
+
+        const reader = new FileReader();
+        reader.onloadend = function() {
+            const base64Data = reader.result;
+            
+            const formData = new URLSearchParams();
+            formData.append('fileData', base64Data);
+            formData.append('filename', file.name);
+            formData.append('memberName', document.getElementById('memberName').value);
+            formData.append('memberPhone', document.getElementById('memberPhone').value);
+
+            fetch(googleWebAppUrl, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                submitBtn.disabled = false;
+                submitBtn.style.backgroundColor = "#1a2a6c";
+                submitBtn.innerText = "දත්ත ඇතුළත් කරන්න 🚀";
+                messageDiv.style.display = "block";
+                
+                if(data.status === 'success') {
+                    messageDiv.style.backgroundColor = "#d4edda";
+                    messageDiv.style.color = "#155724";
+                    messageDiv.innerText = data.message;
+                    document.getElementById('receiptForm').reset();
+                } else {
+                    messageDiv.style.backgroundColor = "#f8d7da";
+                    messageDiv.style.color = "#721c24";
+                    messageDiv.innerText = "යම් දෝෂයක් සිදු වුනා. නැවත උත්සාහ කරන්න.";
+                }
+            })
+            .catch(error => {
+                submitBtn.disabled = false;
+                submitBtn.style.backgroundColor = "#1a2a6c";
+                submitBtn.innerText = "දත්ත ඇතුළත් කරන්න 🚀";
+                messageDiv.style.display = "block";
+                messageDiv.style.backgroundColor = "#f8d7da";
+                messageDiv.style.color = "#721c24";
+                messageDiv.innerText = "සන්නිවේදන දෝෂයක්! කරුණාකර අන්තර්ජාල සම්බන්ධතාව පරීක්ෂා කරන්න.";
+                console.error(error);
+            });
+        };
+        
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 
 <!-- ── GALLERY ── -->
 <section class="section reveal" id="gallery">
