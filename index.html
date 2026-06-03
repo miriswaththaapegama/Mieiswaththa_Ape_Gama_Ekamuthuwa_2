@@ -395,26 +395,58 @@ tr:hover td{background:#fafcff;}
 .bank-info strong{color:var(--navy);}
 
 /* ── GALLERY ── */
-.gallery-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));
-  gap:18px;
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 18px;
 }
-.gallery-item{
-  background:var(--white);border-radius:var(--radius);
-  overflow:hidden;box-shadow:var(--shadow);transition:var(--transition);
+.gallery-item {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
 }
-.gallery-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
-.gallery-placeholder{
-  width:100%;height:180px;
-  background:linear-gradient(135deg,var(--gray-2),var(--gray-1));
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:10px;color:var(--gray-3);font-size:14px;
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
-.gallery-placeholder .ph-icon{font-size:40px;}
-.gallery-caption{padding:14px 16px;}
-.gallery-caption h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;}
-.gallery-caption p{font-size:12px;color:var(--text-soft);}
+
+/* ── GALLERY SLIDER ADDITIONS (නව එකතු කිරීම්) ── */
+.gallery-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox සඳහා */
+  -ms-overflow-style: none; /* IE සඳහා */
+  width: 100%;
+  height: 180px;
+}
+.gallery-slider::-webkit-scrollbar {
+  display: none; /* Chrome, Safari සහ Opera සඳහා Scrollbar එක වහන්න */
+}
+.gallery-slider img {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.gallery-caption {
+  padding: 14px 16px;
+}
+.gallery-caption h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.gallery-caption p {
+  font-size: 12px;
+  color: var(--text-soft);
+}
 
 /* ── CONTACT ── */
 .contact-grid{
@@ -820,74 +852,43 @@ footer a:hover{text-decoration:underline;}
 
 <!-- ── GALLERY ── -->
 <section class="section reveal" id="gallery">
-  <h2 class="section-title">📸 ඡායාරූප <span>ගැලරිය</span><span class="sub">ගමේ විශේෂ සිදුවීම්</span></h2>
+  <h2 class="section-title">📸 අපේ <span>මතකයන්</span><span class="sub">සමිති ක්‍රියාකාරකම් සහ විශේෂ අවස්ථා</span></h2>
   
   <div class="gallery-grid">
     
-    <div class="gallery-item" onclick="openGalleryPopUp('අවුරුදු සන්නකෙළිය 2025')" style="cursor: pointer;">
-      <div class="gallery-slider-container">
-        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500" alt="අවුරුදු 1">
-        <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=500" alt="අවුරුදු 2">
-        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=500" alt="අවුරුදු 3">
+    <div class="gallery-item">
+      <div class="gallery-slider">
+        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=cover&w=500&q=80" alt="පින්තූරය 1" onclick="openGalleryModal('රැස්වීම් මතකයන්', 'කාරක සභා රැස්වීම් සහ සාකච්ඡා වටවලින් බිඳක්.')">
+        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=cover&w=500&q=80" alt="පින්තූරය 2" onclick="openGalleryModal('රැස්වීම් මතකයන්', 'සාමාජිකයින්ගේ අදහස් හුවමාරු කරගත් මොහොතක්.')">
+        <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=cover&w=500&q=80" alt="පින්තූරය 3" onclick="openGalleryModal('රැස්වීම් මතකයන්', 'සමිතියේ ඉදිරි වැඩපිළිවෙල සැලසුම් කිරීම.')">
       </div>
       <div class="gallery-caption">
-        <h4>අවුරුදු සන්නකෙළිය 2025</h4>
-        <p>ගමේ ඇවෙරිදා සැමරීම (විස්තර බැලීමට ඔබන්න)</p>
+        <h4>කාරක සභා රැස්වීම්</h4>
+        <p>ප්‍රජා සංවර්ධන තීරණ ගනු ලැබූ අවස්ථාවන් 📋</p>
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openGalleryPopUp('ශ්‍රමදාන')" style="cursor: pointer;">
-      <div class="gallery-slider-container">
-        <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=500" alt="ශ්‍රමදාන 1">
-        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500" alt="ශ්‍රමදාන 2">
+    <div class="gallery-item">
+      <div class="gallery-slider">
+        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=cover&w=500&q=80" alt="පින්තූරය 1" onclick="openGalleryModal('සුභසාධන කටයුතු', 'ගමේ ජනතාව වෙනුවෙන් ක්‍රියාත්මක කළ සහන සේවා.')">
+        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=cover&w=500&q=80" alt="පින්තූරය 2" onclick="openGalleryModal('සුභසාධන කටයුතු', 'අසීරු අවස්ථාවන්හිදී සාමාජිකයින්ට අතහිත දීම.')">
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=cover&w=500&q=80" alt="පින්තූරය 3" onclick="openGalleryModal('සුභසාධන කටයුතු', 'ප්‍රජා සහයෝගීතාවය ශක්තිමත් කිරීමේ පියවර.')">
       </div>
       <div class="gallery-caption">
-        <h4>ශ්‍රමදාන</h4>
-        <p>ගමේ පරිසර ශ්‍රමදාන (විස්තර බැලීමට ඔබන්න)</p>
+        <h4>සුභසාධන වැඩසටහන්</h4>
+        <p>ගම් වැසියන් වෙනුවෙන් කල උපකාර 🤝</p>
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openGalleryPopUp('වෙසක් සැමරීම')" style="cursor: pointer;">
-      <div class="gallery-slider-container">
-        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=500" alt="වෙසක් 1">
-        <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=500" alt="වෙසක් 2">
+    <div class="gallery-item">
+      <div class="gallery-slider">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=cover&w=500&q=80" alt="පින්තූරය 1" onclick="openGalleryModal('උත්සව අවස්ථා', 'ගමේ එකමුතුවෙන් සංවිධානය කල ආගමික උත්සව.')">
+        <img src="https://images.unsplash.com/photo-1464356886494-870e64f43c33?auto=format&fit=cover&w=500&q=80" alt="පින්තූරය 2" onclick="openGalleryModal('උත්සව අවස්ථා', 'සංස්කෘතික සහ පොදු සමරු උත්සව අවස්ථා.')">
+        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=cover&w=500&q=80" alt="පින්තූරය 3" onclick="openGalleryModal('උත්සව අවස්ථා', 'ළමා හා තරුණ අභිවර්ධන වැඩසටහන්.')">
       </div>
       <div class="gallery-caption">
-        <h4>වෙසක් සැමරීම</h4>
-        <p>දහම් සාකච්ඡා සහ කූඩු (විස්තර බැලීමට ඔබන්න)</p>
-      </div>
-    </div>
-
-    <div class="gallery-item" onclick="openGalleryPopUp('ක්‍රීඩා සැණකෙළිය')" style="cursor: pointer;">
-      <div class="gallery-slider-container">
-        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500" alt="ක්‍රීඩා 1">
-        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=500" alt="ක්‍රීඩා 2">
-      </div>
-      <div class="gallery-caption">
-        <h4>ක්‍රීඩා සැණකෙළිය</h4>
-        <p>ත්‍යාග ලබා දීමේ අවස්ථාව (විස්තර බැලීමට ඔබන්න)</p>
-      </div>
-    </div>
-
-    <div class="gallery-item" onclick="openGalleryPopUp('සාමාජික රැස්වීම')" style="cursor: pointer;">
-      <div class="gallery-slider-container">
-        <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=500" alt="රැස්වීම 1">
-        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500" alt="රැස්වීම 2">
-      </div>
-      <div class="gallery-caption">
-        <h4>සාමාජික රැස්වීම</h4>
-        <p>ත්‍රෛමාසික සාමාන්‍ය රැස්වීම (විස්තර බැලීමට ඔබන්න)</p>
-      </div>
-    </div>
-
-    <div class="gallery-item" onclick="openGalleryPopUp('පොසොන් දන්සැල')" style="cursor: pointer;">
-      <div class="gallery-slider-container">
-        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=500" alt="දන්සැල 1">
-        <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=500" alt="දන්සැල 2">
-      </div>
-      <div class="gallery-caption">
-        <h4>පොසොන් දන්සැල</h4>
-        <p>ආගමික කටයුතු (විස්තර බැලීමට ඔබන්න)</p>
+        <h4>විශේෂ උත්සව සහ ආගමික කටයුතු</h4>
+        <p>පොසොන් දන්සැල ඇතුළු පොදු උත්සවයන් 🌟</p>
       </div>
     </div>
 
@@ -1471,7 +1472,7 @@ function searchMember(){
     </div>
     <div class="payment-table-wrap">
       <table>
-        <thead><tr><th>මාසය</th><th>ගෙවීම් තත්ත්වය</th></tr></thead>
+        <thead><tr><th>මාසය</th><th>गෙවීම් තත්ත්වය</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;
@@ -1501,6 +1502,7 @@ setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add
 </div>
 
 <script>
+// 📋 සාමාන්‍ය කාඩ්පත් වලට අදාළ විස්තර
 const infoContent = {
 'ප්‍රජා සංවර්ධනය සහ එකමුතුකම':'ප්‍රජාව තුළ එකමුතුකම, සහයෝගීතාවය සහ සංවර්ධනය ශක්තිමත් කිරීම සඳහා විවිධ වැඩසටහන් ක්‍රියාත්මක කරයි.',
 'සාමාජික සුභසාධනය':'සාමාජිකයින්ගේ සුභසාධනය සහ යහපැවැත්ම වෙනුවෙන් සහාය ලබාදේ.',
@@ -1509,11 +1511,43 @@ const infoContent = {
 'පොදු පහසුකම් සංවර්ධනය':'ගමේ පොදු පහසුකම් සංවර්ධනය කිරීම සඳහා ව්‍යාපෘති ක්‍රියාත්මක කරයි.',
 'අපගේ සේවා':'ප්‍රජාවට ලබාදෙන විවිධ සේවා සහ වැඩසටහන් පිළිබඳ විස්තර.'
 };
+
+// 📸 ඡායාරූප ගැලරියට (Gallery) අදාළ කෙටි විස්තර! (ඔයාට ඕන වෙලාවක මේ සිංහල අකුරු ටික විතරක් Edit කරන්න පුළුවන්)
+const galleryData = {
+  'අවුරුදු සන්නකෙළිය 2025': '2025 මිරිස්වත්ත අපේ ගම අවුරුදු උත්සවය ගම්වාසීන් රැසකගේ සහභාගීත්වයෙන් ඉතා උත්කර්ෂවත් අන්දමින් පැවැත්වුණි. මෙහිදී සාම්ප්‍රදායික අවුරුදු ක්‍රීඩා, කඹ ඇදීම මෙන්ම ජයග්‍රාහකයින් උදෙසා වටිනා ත්‍යාග ප්‍රදානයද සිදුවිය. මුළු වැඩසටහනේම සම්පූර්ණ විස්තරය සහ ප්‍රජා සහයෝගිතාව මෙහිදී කැපී පෙනුණි.',
+  
+  'ශ්‍රමදාන': 'ගම්මානයේ පොදු පරිසරය පිරිසිදුව තබාගැනීම වෙනුවෙන් සංවිධානය කල මහා ශ්‍රමදාන ව්‍යාපාරය සාර්ථකව නිමවිය. කානු පද්ධති පිරිසිදු කිරීම, මාර්ග දෙපස කැළි කසල ඉවත් කිරීම සහ පොදු ස්ථාන සුරැකීම මෙහිදී ගම්වාසීන්ගේ ශ්‍රම දායකත්වයෙන් සිදුකෙරුණි.',
+  
+  'වෙසක් සැමරීම': 'වෙසක් පුන් පොහෝ දිනය නිමිත්තෙන් ගම්මානයේ ධර්ම දේශනා, භක්ති ගීත, වෙසක් පහන් කූඩු ප්‍රදර්ශන සහ විවිධ ආගමික වතාවත් රැසක් සාමාජිකයන්ගේ සහභාගීත්වයෙන් සංවිධානය කර තිබුණි.',
+  
+  'ක්‍රීඩා සැණකෙළිය': 'තරුණ හා ළමා අංශ නියෝජනය කරමින් පැවැත් වූ වාර්ෂික ක්‍රීඩා තරඟාවලියේ ජයග්‍රාහකයින් උදෙසා වටිනා සහතික පත්‍ර, කුසලාන සහ ත්‍යාග පිරිනැමීමේ උත්සවයේ සුවිශේෂී අවස්ථා මෙහි ඇතුලත් වේ.',
+  
+  'සාමාජික රැස්වීම': 'මිරිස්වත්ත අපේ ගම එකමුතුව සංගමයේ ත්‍රෛමාසික මහා සාමාන්‍ය රැස්වීම සාමාජිකයන්ගේ වැඩි සහභාගීත්වයෙන් ප්‍රජා ශාලාවේදී සාර්ථකව පවත්වන ලදී. එහිදී ඉදිරි සංවර්ධන කටයුතු පිළිබඳ සාකච්ඡා විය.',
+  
+  'පොසොන් දන්සැල': 'පොසොන් පොහෝ දිනය නිමිත්තෙන් ගම්වාසීන් සියලු දෙනාගේ එකමුතුවෙන්, ශ්‍රම හා මූල්‍ය දායකත්වයෙන් පවත්වන ලද වාර්ෂික මහා බත් දන්සැල සහ ආගමික වැඩසටහන් මාලාව.'
+};
+
+// සාමාන්‍ය කාඩ්පත් විවෘත කරන Function එක
 function openInfoModal(title){
  document.getElementById('infoModalTitle').innerText=title;
  document.getElementById('infoModalText').innerText=infoContent[title] || 'වැඩි විස්තර ඉක්මනින් එක් කරනු ඇත.';
  document.getElementById('infoModal').style.display='flex';
 }
+
+// 🎯 ඡායාරූප ගැලරියේ බොක්ස් එකක් ක්ලික් කළ විට විස්තර පෙන්වන නව Function එක
+function showGalleryDetails(title) {
+  const modal = document.getElementById('infoModal');
+  const modalTitle = document.getElementById('infoModalTitle');
+  const modalText = document.getElementById('infoModalText');
+  
+  if (modal && modalTitle && modalText && galleryData[title]) {
+    modalTitle.innerText = title;
+    modalText.innerText = galleryData[title];
+    modal.style.display = 'flex'; // Pop-up එක පෙන්වීම
+  }
+}
+
+// Pop-up එක වසන Function එක
 function closeInfoModal(){ document.getElementById('infoModal').style.display='none'; }
 </script>
 
