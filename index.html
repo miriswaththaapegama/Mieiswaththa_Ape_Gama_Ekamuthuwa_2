@@ -559,23 +559,41 @@ footer a:hover{text-decoration:underline;}
   .portal-input-wrap input,.btn{width:100%;}
   .hero-cta{flex-direction:column;align-items:center;}
   
-  /* 📱 ෆෝන් එකෙන් බලද්දී මේන් නම ලොකු කිරීම සහ ලෝගෝ එකට ඉඩ හැදීම */
+  /* 📱 ෆෝන් එකෙන් බලද්දී ඉහළ හෙඩර් (Header) එකේ නම ලොකු කිරීම */
   .header-inner {
     padding: 10px 12px !important;
   }
   .logo span {
-    font-size: 18px !important; /* ෆෝන් එකේදී අකුරු ලොකු කරන ප්‍රමාණය */
+    font-size: 18px !important; /* ෆෝන් එකේදී හෙඩර් අකුරු ලොකු කරන ප්‍රමාණය */
     font-weight: 700 !important;
     letter-spacing: 0.5px;
-    white-space: nowrap; /* නම පේළි දෙකකට කැඩෙන්නේ නැතිව එක පේළියක තබා ගැනීමට */
+    white-space: nowrap; /* නම පේළි දෙකකට කැඩෙන්නේ නැතිව තබා ගැනීමට */
   }
   .logo-icon {
-    width: 38px !important; /* ෆෝන් එකට ගැලපෙන්න ලෝගෝ රවුම පොඩ්ඩක් සකස් කිරීම */
+    width: 38px !important; /* ලෝගෝ රවුම ෆෝන් එකට සකස් කිරීම */
     height: 38px !important;
     margin-right: 6px !important;
   }
-}
 
+  /* 👑 📱 ෆෝන් එකෙන් බලද්දී ඔබ මාර්ක් කරපු මැද ප්‍රධාන නම (Hero Title) සුපිරියටම ලොකු කිරීම */
+  .hero h1.main-hero-title {
+    font-size: 36px !important; /* ෆෝන් එකේදී මැද නම කැපී පෙනෙන ලෙස ලොකු කරන ප්‍රමාණය */
+    line-height: 1.2 !important;
+    font-weight: 800 !important; /* අකුරු වඩාත් තදින් (Bold) පෙන්වීමට */
+    margin-bottom: 15px !important;
+    letter-spacing: -0.5px !important;
+  }
+  .hero h1.main-hero-title span {
+    font-size: 42px !important; /* "මිරිස්වත්ත" කියන කොටස තවත් ප්‍රධාන කොට පෙන්වීමට */
+    display: inline-block;
+    margin-bottom: 4px;
+  }
+  .hero p {
+    font-size: 15px !important; /* යටින් ඇති කුඩා විස්තරයද ෆෝන් එකට ගැලපෙන සේ සැකසීම */
+    line-height: 1.5 !important;
+    padding: 0 10px;
+  }
+}
 .info-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);align-items:center;justify-content:center;z-index:9999}
 .info-modal-content{background:#fff;padding:24px;border-radius:18px;max-width:520px;width:92%;position:relative}
 .info-close{position:absolute;top:8px;right:12px;border:none;background:none;font-size:28px;cursor:pointer}
@@ -626,12 +644,11 @@ footer a:hover{text-decoration:underline;}
   </div>
 </header>
 
-<!-- ── HERO ── -->
 <section class="hero" id="home">
   <div class="hero-pattern"></div>
   <div class="hero-content">
     <div class="hero-badge"> ශ්‍රී ලංකාව · පිළියන්දල</div>
-    <h1> <span>මිරිස්වත්ත</span><br>අපේ ගම එකමුතුව</h1>
+    <h1 class="main-hero-title"><span>මිරිස්වත්ත</span><br>අපේ ගම එකමුතුව</h1>
     <p>එකමුතුවෙන් ගමේ සංවර්ධනය කරමු — ප්‍රජා බලය ඔස්සේ නව ශ්‍රී ලංකාවක් ගොඩනගමු</p>
     <div class="hero-cta">
       <a href="#portal" class="btn btn-gold">💳 සාමාජික පියස</a>
