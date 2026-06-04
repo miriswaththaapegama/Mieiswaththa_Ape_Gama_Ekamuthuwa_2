@@ -1298,227 +1298,239 @@ function closeModal(id){document.getElementById(id).classList.remove('open');doc
 document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',function(e){if(e.target===this)closeModal(this.id);}));
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(m=>closeModal(m.id));});
 
-// ── MEMBERS DATA ──
-const months=['අගෝස්තු','සැප්තැම්බර්','ඔක්තෝබර්','නොවැම්බර්','දෙසැම්බර්','ජනවාරි','පෙබරවාරි','මාර්තු','අප්‍රේල්','මැයි','ජූනි','ජූලි'];
+// ── MEMBERS DATA & MULTI-YEAR SYSTEM (වසර 4 ක පූර්ණ පද්ධතිය) ──
+const months = ['අගෝස්තු','සැප්තැම්බර්','ඔක්තෝබර්','නොවැම්බර්','දෙසැම්බර්','ජනවාරි','පෙබරවාරි','මාර්තු','අප්‍රේල්','මැයි','ජූනි','ජූලි'];
 
-const members=[
-{id:1,name:'චන්ද්‍රරත්න පල්ලේගම',payments:Array(12).fill('Paid')},
-{id:2,name:'හරීන්ද්‍ර පෙරේරා',payments:Array(12).fill('Paid')},
-{id:3,name:'පී.සී.එස්. ජයවීර',payments:Array(12).fill('Paid')},
-{id:4,name:'හර්ෂා එමි සමරසිංහ',payments:Array(12).fill('Paid')},
-{id:5,name:'නිලන්ති බුවනෙක',payments:Array(12).fill('Paid')},
-{id:6,name:'සුනිල් ප්‍රේමරත්න',payments:Array(12).fill('Paid')},
-{id:7,name:'ඩබ්ලිව්.ඒ. සරත්',payments:Array(12).fill('Paid')},
-{id:8,name:'ආර්.එම්. දයාවතී',payments:Array(12).fill('Paid')},
-{id:9,name:'ඩබ්ලිව්.ඒ. සෝමපාල',payments:Array(12).fill('Paid')},
-{id:10,name:'ජේ.ඒ. සිරිල්',payments:Array(12).fill('Paid')},
-{id:11,name:'ඒ.ඩී. ජයසේන',payments:Array(12).fill('Paid')},
-{id:12,name:'පත්මපානි රාජපක්ෂ',payments:Array(12).fill('Due')},
-{id:13,name:'ඩබ්ලිව්.එම්. කුසුම්',payments:Array(12).fill('Paid')},
-{id:14,name:'එච්.එම්. නිහාල්',payments:Array(12).fill('Paid')},
-{id:15,name:'එච්.එම්. චන්ද්‍රා',payments:Array(12).fill('Paid')},
-{id:16,name:'කේ.ජී. ප්‍රේමදාස',payments:Array(12).fill('Paid')},
-{id:17,name:'ඩබ්ලිව්.ඒ. කමල්',payments:Array(12).fill('Paid')},
-{id:18,name:'ධනුක පෙරේරා',payments:['Paid',...Array(11).fill('Due')]},
-{id:19,name:'එච්.එම්. ඉන්ද්‍රානි',payments:Array(12).fill('Paid')},
-{id:20,name:'එම්.එම්. පද්මා',payments:Array(12).fill('Paid')},
-{id:21,name:'ඩබ්ලිව්.ජී. නන්දාවතී',payments:Array(12).fill('Paid')},
-{id:22,name:'එච්.එම්. සෝමරත්න',payments:Array(12).fill('Paid')},
-{id:23,name:'එච්.එම්. කුමුදුනී',payments:Array(12).fill('Paid')},
-{id:24,name:'එම්.ජී. විමලා',payments:Array(12).fill('Paid')},
-{id:25,name:'එච්.එම්. කරුණාරත්න',payments:Array(12).fill('Paid')},
-{id:26,name:'එච්.එම්. ශාන්ති',payments:Array(12).fill('Paid')},
-{id:27,name:'ජේ.ජී. සුනිල්',payments:Array(12).fill('Paid')},
-{id:28,name:'ඩබ්ලිව්.එම්. අජිත්',payments:Array(12).fill('Paid')},
-{id:29,name:'ඩබ්ලිව්.එම්. නදීකා',payments:Array(12).fill('Paid')},
-{id:30,name:'ආර්.එම්. නිශාන්ත',payments:Array(12).fill('Paid')},
-{id:31,name:'ජී.ඩී. චමින්ද',payments:Array(12).fill('Paid')},
-{id:32,name:'ඩී.එම්. සමන්',payments:Array(12).fill('Paid')},
-{id:33,name:'කේ.ජී. සුජීවා',payments:Array(12).fill('Paid')},
-{id:34,name:'ඩබ්ලිව්.ඒ. ඉන්දික',payments:Array(12).fill('Paid')},
-{id:35,name:'එච්.එම්. ප්‍රියංකා',payments:Array(12).fill('Paid')},
-{id:36,name:'එම්.ජී. අසංක',payments:Array(12).fill('Paid')},
-{id:37,name:'ඩබ්ලිව්.එම්. රුවන්',payments:Array(12).fill('Paid')},
-{id:38,name:'එන්.එස්. ජයසිංහ',payments:Array(12).fill('Due')},
-{id:39,name:'කේ.ඒ. ප්‍රදීප්',payments:Array(12).fill('Paid')},
-{id:40,name:'එච්.එම්. චතුරිකා',payments:Array(12).fill('Paid')},
-{id:41,name:'එම්.ඒ. ප්‍රියන්ත',payments:Array(12).fill('Paid')},
-{id:42,name:'ජේ.ඒ. කුමාරි',payments:Array(12).fill('Paid')},
-{id:43,name:'එම්.ඩී. සරත්',payments:Array(12).fill('Paid')},
-{id:44,name:'ආර්.එම්. රේණුකා',payments:Array(12).fill('Paid')},
-{id:45,name:'කේ.ජී. අනුර',payments:Array(12).fill('Paid')},
-{id:46,name:'ඩබ්ලිව්.ජී. අජිත්',payments:Array(12).fill('Paid')},
-{id:47,name:'එච්.එම්. චාන්දනී',payments:Array(12).fill('Paid')},
-{id:48,name:'එම්.ජී. නුවන්',payments:Array(12).fill('Paid')},
-{id:49,name:'ඩී.එම්. කුමාර',payments:Array(12).fill('Paid')},
-{id:50,name:'වී.ඩබ්ලිව්. බණ්ඩාර',payments:['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due']},
-{id:51,name:'ජේ.ජී. රෝහණ',payments:Array(12).fill('Paid')},
-{id:52,name:'ඩබ්ලිව්.එම්. රංජිත්',payments:Array(12).fill('Paid')},
-{id:53,name:'එච්.එම්. නිමල්',payments:Array(12).fill('Paid')},
-{id:54,name:'කේ.ඒ. සමීර',payments:Array(12).fill('Paid')},
-{id:55,name:'එම්.ජී. ශිරෝමි',payments:Array(12).fill('Paid')},
-{id:56,name:'ආර්.එම්. චතුර',payments:Array(12).fill('Paid')},
-{id:57,name:'ඩබ්ලිව්.ඒ. අසංක',payments:Array(12).fill('Paid')},
-{id:58,name:'එම්.කේ. රසික ප්‍රියන්ත',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:59,name:'එච්.එම්. ලක්ෂ්මී',payments:Array(12).fill('Paid')},
-{id:60,name:'ඩී.එම්. සුජීව',payments:Array(12).fill('Paid')},
-{id:61,name:'එන් ද අල්විස්',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:62,name:'ආර් එම් ජයකුරු',payments:Array(12).fill('Paid')},
-{id:63,name:'එන්.අයි.කරැණාසේන',payments:Array(12).fill('Paid')},
-{id:64,name:'ප්‍රසන්න කුමාර රාජපක්ෂ',payments:Array(12).fill('Due')},
-{id:65,name:'Abeyrathne Wikcramasigha',payments:Array(12).fill('Paid')},
-{id:66,name:'කේ ඒ අල්විස්',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:67,name:'එස් තුෂාරිකා ප්‍රේමත්න',payments:Array(12).fill('Paid')},
-{id:68,name:'එච් ඒ නන්දසිලි',payments:Array(12).fill('Paid')},
-{id:69,name:'එම් ඩී තිලකරත්න',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:70,name:'ඒ ඩී එස් යූ මානිකා',payments:Array(12).fill('Paid')},
-{id:71,name:'W J M G W ජයතිලක',payments:Array(12).fill('Paid')},
-{id:72,name:'දිල්රුක් සිවර්ධන',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:73,name:'අතුල වීරසිංහ',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:74,name:'මහේෂ් ප්‍රියංකර කොස්තා',payments:Array(12).fill('Paid')},
-{id:75,name:'ආර් පී දයාරත්න',payments:Array(12).fill('Paid')},
-{id:76,name:'ඊ පී කපිල ප්‍රියංකර',payments:Array(12).fill('Paid')},
-{id:77,name:'ආර් කේ අසෝකා රාජපක්ෂ',payments:Array(12).fill('Paid')},
-{id:78,name:'ජේ එම් එල් වාජේසේකර',payments:Array(12).fill('Paid')},
-{id:79,name:'ඩි ආර් ආර් එන් කෝට්ටගේ',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:80,name:'ආර්.ජී.පී.කේ. රණතුංග',payments:Array(12).fill('Paid')},
-{id:81,name:'චමින්ද නාලක අබේසේකුර',payments:Array(12).fill('Paid')},
-{id:82,name:'ඩි.ඩි.මිල්ලනිය',payments:Array(12).fill('Paid')},
-{id:83,name:'E W R S නානායක්කාර',payments:Array(12).fill('Paid')},
-{id:84,name:'A L සුජීවා ජයමිණි',payments:Array(12).fill('Paid')},
-{id:85,name:'D G සම්පග් දේවසිංහ',payments:Array(12).fill('Paid')},
-{id:86,name:'එච්. ඩී. එස්. සී. සමරසිංහ',payments:Array(12).fill('Paid')},
-{id:87,name:'L D රණවීර',payments:Array(12).fill('Paid')},
-{id:88,name:'කේ.ඩී.නිහාල් පත්මසිරි',payments:Array(12).fill('Paid')},
-{id:89,name:'චාමර කුමාර පතිරගේ',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:90,name:'පි ඒ සරත්',payments:Array(12).fill('Paid')},
-{id:91,name:'දෙයාලගේ දොං මහින්ද චන්ද්‍රසිරි',payments:Array(12).fill('Paid')},
-{id:92,name:'W A U පතිරණ',payments:Array(12).fill('Paid')},
-{id:93,name:'පී. එල්. ලියනගේ',payments:Array(12).fill('Paid')},
-{id:94,name:'චන්දන කුලරතින',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:95,name:'K D Y D ජයලක්',payments:Array(12).fill('Paid')},
-{id:96,name:'නාඩකන්දගේ අභයසිරි',payments:Array(12).fill('Paid')},
-{id:97,name:'I H C කුලසිංහ',payments:Array(12).fill('Paid')},
-{id:98,name:'T L අසේල චන්න කුමාර',payments:['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due']},
-{id:99,name:'එච් කේ ඉදුනිල් නදීශ',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:100,name:'K සමන්',payments:Array(12).fill('Paid')},
-{id:101,name:'N හෙවගේ',payments:Array(12).fill('Paid')},
-{id:102,name:'S K T පෙරේරා',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:103,name:'ජේ.ඒ. චමින්ද කුමාර ලාල් ජයකොඩි',payments:Array(12).fill('Paid')},
-{id:104,name:'T R T K ගුණසේකර',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:105,name:'B D අතුකෝරල',payments:Array(12).fill('Paid')},
-{id:106,name:'කේ. එම්. සරත් කුමාර අල්විස්',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:107,name:'K වජිර අරවින්ද ද සිල්වා',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:108,name:'W K D අතුල පත්මසිරි',payments:Array(12).fill('Paid')},
-{id:109,name:'ජයන්ත බන්දුලාල් ගමගේ',payments:Array(12).fill('Paid')},
-{id:110,name:'K V D Premarathna',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:111,name:'සුනිල් මොරවක',payments:Array(12).fill('Paid')},
-{id:112,name:'R D නිහාල් රණවීර',payments:Array(12).fill('Paid')},
-{id:113,name:'K A මනෝජ් ලාල් ප්‍රියදර්ෂණ',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:114,name:'R A D අජිත් කුමාරසිරි රණසිංහ',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:115,name:'එස් ඩි අර් කේ චන්ද්‍රතිස්ස',payments:Array(12).fill('Paid')},
-{id:116,name:'D S A ලියනගේ',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:117,name:'P W K බබරැන්දෙග්',payments:Array(12).fill('Paid')},
-{id:118,name:'සිරිල් බද්දෙගම',payments:Array(12).fill('Paid')},
-{id:119,name:'පී.ජේ.කේ.ගුනවර්ධන',payments:Array(12).fill('Paid')},
-{id:120,name:'බී.ඒ. වීරසිංහ',payments:Array(12).fill('Paid')},
-{id:121,name:'A.M.සෝමාවති',payments:Array(12).fill('Paid')},
-{id:122,name:'අජිත් ධර්මසිරි',payments:Array(12).fill('Paid')},
-{id:123,name:'එස් ටී බූලත්සිංහල',payments:['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due']},
-{id:124,name:'ජගක් ලියනගේ',payments:Array(12).fill('Paid')},
-{id:125,name:'D S V රණවීර',payments:Array(12).fill('Paid')},
-{id:126,name:'එස් ටි අර් බන්ඩර',payments:Array(12).fill('Paid')},
-{id:127,name:'R Renuka Shayamali Fernando',payments:Array(12).fill('Paid')},
-{id:128,name:'A L බුද්ධික සදරුවන්',payments:['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due','Due']},
-{id:129,name:'චන්දන මනෝජ් සමරතුංග',payments:Array(12).fill('Paid')},
-{id:130,name:'සු එස් කොඩිකාර',payments:['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due','Due']},
-{id:131,name:'R P D P රාජපක්ෂ',payments:['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due','Due']},
-{id:132,name:'K G L සිල්වා',payments:['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due']},
-{id:133,name:'R Kanthi Pranandu',payments:Array(12).fill('Paid')},
-{id:134,name:'පී.එම්.ඒ එල් පෙරේරා',payments:Array(12).fill('Paid')},
-{id:135,name:'ගිහාන් මිල්රොයි පීටර්',payments:['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due']},
-{id:136,name:'ඉලේපෙරුම ආරච්චිගේ ගීතානි මල්ලිකා',payments:['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due']},
-{id:137,name:'ජෙ පි ටී කුමාර',payments:Array(12).fill('Paid')},
-{id:138,name:'පී වල්ලව ආරච්චි',payments:Array(12).fill('Paid')},
-{id:139,name:'එල් ඩි ඩි එල් ජයතිලක',payments:Array(12).fill('Paid')},
-{id:140,name:'ටි.එන්. ලොකුගේ',payments:Array(12).fill('Paid')},
-{id:141,name:'එස් ඒ කනිල්',payments:['Paid','Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due']},
-{id:142,name:'එම් කමිල දසංග',payments:['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due','Due','Due']},
-{id:143,name:'එම් ඒ අනුර ලක්ෂන් පෙ',payments:['Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due','Due']},
-{id:144,name:'S H සිරිල්',payments:Array(12).fill('Paid')},
-{id:145,name:'R P D D D රාජපක්ෂ',payments:Array(12).fill('Paid')},
-{id:146,name:'K D සුමිත්',payments:Array(12).fill('Paid')},
-{id:147,name:'T E D නලින්ද',payments:Array(12).fill('Paid')},
-{id:148,name:'ඉන්නාම් ඉෆ්නිකාර්',payments:Array(12).fill('Paid')},
-{id:149,name:'H මුදියව්සේලාගේ සිරිසේන',payments:Array(12).fill('Paid')},
-{id:150,name:'හේවා ගේ චන්ද්‍රවතී දඹරේ',payments:Array(12).fill('Paid')},
-{id:151,name:'C J කත්‍රිආරච්චි',payments:Array(12).fill('Paid')},
-{id:152,name:'H සිරිවර්ධන',payments:Array(12).fill('Paid')},
-{id:153,name:'A R සිරියර්ධන',payments:Array(12).fill('Paid')},
-{id:154,name:'M M චානග පුෂ්පකුමාර',payments:['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due','Due','Due']},
-{id:155,name:'සැබෑ නම',payments:Array(12).fill('Paid')},
-{id:156,name:'T නන්දවතී පෙරෙරා',payments:Array(12).fill('Paid')},
-{id:157,name:'D Bombuwala',payments:Array(12).fill('Paid')},
-{id:158,name:'J K තිමේෂ් ආර් ජයවීර',payments:Array(12).fill('Paid')},
-{id:159,name:'දිවිගල්ලගේ ස්වර්ණලා',payments:Array(12).fill('Paid')},
-{id:160,name:'ඒ ගාමිණි ලිවිනිස්',payments:Array(12).fill('Paid')},
-{id:161,name:'කටුවාවලගේ දොන් නලින් ප්‍රසන්න',payments:Array(12).fill('Paid')},
-{id:162,name:'ඩී.ඒ.පී.ගමගෙ',payments:Array(12).fill('Paid')},
-{id:163,name:'A U කළුආරච්චි',payments:Array(12).fill('Paid')},
-{id:164,name:'බී.ඩී.එල්. ලහිරු පැතුම් පියමන්ත',payments:Array(12).fill('Paid')},
-{id:165,name:'K M M ශ්‍රීනාත් ශාන්තකුමාර',payments:Array(12).fill('Paid')},
-{id:166,name:'එම්.පී.එල්.ද සිල්වා',payments:Array(12).fill('Paid')},
-{id:167,name:'P A P ධර්මබන්ධු',payments:Array(12).fill('Paid')},
-{id:168,name:'Y ජයසේකර',payments:Array(12).fill('Paid')},
-{id:169,name:'S A D M සංජු',payments:Array(12).fill('Paid')},
-{id:170,name:'උපුල් විතානගේ',payments:Array(12).fill('Paid')},
-{id:171,name:'W පත්මනුමාර',payments:Array(12).fill('Paid')},
-{id:172,name:'M අජිත් ධර්මසිරි',payments:Array(12).fill('Paid')},
-{id:173,name:'P I මධූසංඛ',payments:Array(12).fill('Paid')},
-{id:174,name:'D K D සුනිල් කරුණාතිලක',payments:Array(12).fill('Paid')},
-{id:175,name:'U L L F පෙරේරා',payments:Array(12).fill('Paid')},
-{id:176,name:'B S හරින්ද්‍ර පෙරේරා',payments:Array(12).fill('Paid')}
+// 📊 වසර 4 කට අදාළ ගෙවීම් දත්ත ව්‍යුහය (පසුව ඔබට 'Paid' / 'Due' ලෙස වෙනස් කරගත හැක)
+// [0] ස්ථානය = අගෝස්තු, [11] ස්ථානය = ජූලි.
+const paymentRecords = {
+  '2023': {},
+  '2024': {},
+  '2025': {},
+  '2026': {}
+};
+
+// 👥 සාමාජිකයන් 176 දෙනාගේ නිල නාම ලේඛනය
+const members = [
+  {id:1, name:'චන්ද්‍රරත්න පල්ලේගම'}, {id:2, name:'හරීන්ද්‍ර පෙරේරා'}, {id:3, name:'පී.සී.එස්. ජයවීර'}, {id:4, name:'හර්ෂා එමි සමරසිංහ'}, {id:5, name:'නිලන්ති බුවනෙක'},
+  {id:6, name:'සුනිල් ප්‍රේමරත්න'}, {id:7, name:'ඩබ්ලිව්.ඒ. සරත්'}, {id:8, name:'ආර්.එ็ม. දයාවතී'}, {id:9, name:'ඩබ්ලිව්.ඒ. සෝමපාල'}, {id:10, name:'ජේ.ඒ. සිරිල්'},
+  {id:11, name:'ඒ.ඩී. ජයසේන'}, {id:12, name:'පත්මපානි රාජපක්ෂ'}, {id:13, name:'ඩබ්ලිව්.එම්. කුසුම්'}, {id:14, name:'එච්.එම්. නිහාල්'}, {id:15, name:'එච්.එම්. චන්ද්‍රා'},
+  {id:16, name:'කේ.ජී. ප්‍රේමදාස'}, {id:17, name:'ඩබ්ලිව්.ඒ. කමල්'}, {id:18, name:'ධනුක පෙරේරා'}, {id:19, name:'එච්.එම්. ඉන්ද්‍රානි'}, {id:20, name:'එම්.එම්. පද්මා'},
+  {id:21, name:'ඩබ්ලිව්.ජී. නන්දාවතී'}, {id:22, name:'එච්.එම්. සෝමරත්න'}, {id:23, name:'එච්.එම්. කුමුදුනී'}, {id:24, name:'එම්.ජී. විමලා'}, {id:25, name:'එච්.එම්. කරුණාරත්න'},
+  {id:26, name:'එච්.එම්. ශාන්ති'}, {id:27, name:'ජේ.ජී. සුනිල්'}, {id:28, name:'ඩබ්ලිව්.එම්. අජිත්'}, {id:29, name:'ඩබ්ලිව්.එම්. නදීකා'}, {id:30, name:'ආර්.එ็ม. නිශාන්ත'},
+  {id:31, name:'ජී.ඩී. චමින්ද'}, {id:32, name:'ඩී.එම්. සමන්'}, {id:33, name:'කේ.ජී. සුජීවා'}, {id:34, name:'ඩබ්ලිව්.ඒ. ඉන්දික'}, {id:35, name:'එච්.එම්. ප්‍රියංකා'},
+  {id:36, name:'එම්.ජී. අසංක'}, {id:37, name:'ඩබ්ලිව්.එම්. රුවන්'}, {id:38, name:'එන්.එස්. ජයසිංහ'}, {id:39, name:'කේ.ඒ. ප්‍රදීප්'}, {id:40, name:'එච්.එම්. චතුරිකා'},
+  {id:41, name:'එම්.ඒ. ප්‍රියන්ත'}, {id:42, name:'ජේ.ඒ. කුමාරි'}, {id:43, name:'එම්.ඩී. සරත්'}, {id:44, name:'ආර්.එ็ม. රේණුකා'}, {id:45, name:'කේ.ජී. අනුර'},
+  {id:46, name:'ඩබ්ලිව්.ජී. අජිත්'}, {id:47, name:'එච්.එම්. චාන්දනී'}, {id:48, name:'එම්.ජී. නුවන්'}, {id:49, name:'ඩී.එම්. කුමාර'}, {id:50, name:'වී.ඩබ්ලිව්. බණ්ඩාර'},
+  {id:51, name:'ජේ.ජී. රෝහණ'}, {id:52, name:'ඩබ්ලිව්.එම්. රංජිත්'}, {id:53, name:'එච්.එම්. නිමල්'}, {id:54, name:'කේ.ඒ. සමීර'}, {id:55, name:'එම්.ජී. ශිරෝමි'},
+  {id:56, name:'ආර්.එ็ม. චතුර'}, {id:57, name:'ඩබ්ලිව්.ඒ. අසංක'}, {id:58, name:'එම්.කේ. රසික ප්‍රියන්ත'}, {id:59, name:'එච්.එම්. ලක්ෂ්මී'}, {id:60, name:'ඩී.එම්. සුජීව'},
+  {id:61, name:'එන් ද අල්විස්'}, {id:62, name:'ආර් එ็ม ජයකුරු'}, {id:63, name:'එන්.අයි.කරැණාසේන'}, {id:64, name:'ප්‍රසන්න කුමාර රාජපක්ෂ'}, {id:65, name:'Abeyrathne Wikcramasigha'},
+  {id:66, name:'කේ ඒ අල්විස්'}, {id:67, name:'එස් තුෂාරිකා ප්‍රේමත්න'}, {id:68, name:'එච් ඒ නන්දසිලි'}, {id:69, name:'එම් ඩී තිලකරත්න'}, {id:70, name:'ඒ ඩී එස් යූ මානිකා'},
+  {id:71, name:'W J M G W ජයතිලක'}, {id:72, name:'දිල්රුක් සිවර්ධන'}, {id:73, name:'අතුල වීරසිංහ'}, {id:74, name:'මහේෂ් ප්‍රියංකර කොස්තා'}, {id:75, name:'ආර් පී දයාරත්න'},
+  {id:76, name:'ඊ පී කපිල ප්‍රියංකර'}, {id:77, name:'ආර් කේ අසෝකා රාජපක්ෂ'}, {id:78, name:'ජේ එම් එල් වාජේසේකර'}, {id:79, name:'ඩි ආර් ආර් එන් කෝට්ටගේ'}, {id:80, name:'ආර්.ජී.පී.කේ. රණතුංග'},
+  {id:81, name:'චමින්ද නාලක අබේසේකුර'}, {id:82, name:'ඩි.ඩි.මිල්ලනිය'}, {id:83, name:'E W R S නානායක්කාර'}, {id:84, name:'A L සුජීවා ජයමිණි'}, {id:85, name:'D G සම්පග් දේවසිංහ'},
+  {id:86, name:'එච්. ඩී. එස්. සී. සමරසිංහ'}, {id:87, name:'L D රණවීර'}, {id:88, name:'කේ.ඩී.නිහාල් පත්මසිරි'}, {id:89, name:'චාමර කුමාර පතිරගේ'}, {id:90, name:'පි ඒ සරත්'},
+  {id:91, name:'දෙයාලගේ දොං මහින්ද චන්ද්‍රසිරි'}, {id:92, name:'W A U පතිරණ'}, {id:93, name:'පී. එල්. ලියනගේ'}, {id:94, name:'චන්දන කුලරතින'}, {id:95, name:'K D Y D ජයලක්'},
+  {id:96, name:'නාඩකන්දගේ අභයසිරි'}, {id:97, name:'I H C කුලසිංහ'}, {id:98, name:'T L අසේල චන්න කුමාර'}, {id:99, name:'එච් කේ ඉදුනිල් නදීශ'}, {id:100, name:'K සමන්'},
+  {id:101, name:'N හෙවගේ'}, {id:102, name:'S K T පෙරේරා'}, {id:103, name:'ජේ.ඒ. චමින්ද කුමාර ලාල් ජයකොඩි'}, {id:104, name:'T R T K ගුණසේකර'}, {id:105, name:'B D අතුකෝරල'},
+  {id:106, name:'කේ. එම්. සරත් කුමාර අල්විස්'}, {id:107, name:'K වජිර අරවින්ද ද සිල්වා'}, {id:108, name:'W K D අතුල පත්මසිරි'}, {id:109, name:'ජයන්ත බන්දුලාල් ගමගේ'}, {id:110, name:'K V D Premarathna'},
+  {id:111, name:'සුනිල් මොරවක'}, {id:112, name:'R D නිහාල් රණවීර'}, {id:113, name:'K A මනෝජ් ලාල් ප්‍රියදර්ෂණ'}, {id:114, name:'R A D අජිත් කුමාරසිරි රණසිංහ'}, {id:115, name:'එස් ඩි අර් කේ චන්ද්‍රතිස්ස'},
+  {id:116, name:'D S A ලියනගේ'}, {id:117, name:'P W K බබරැන්දෙග්'}, {id:118, name:'සිරිල් බද්දෙගම'}, {id:119, name:'පී.ජේ.කේ.ගුනවර්ධන'}, {id:120, name:'බී.ඒ. වීරසිංහ'},
+  {id:121, name:'A.M.සෝමාවති'}, {id:122, name:'අජිත් ධර්මසිරි'}, {id:123, name:'එස් ටී බූලත්සිංහල'}, {id:124, name:'ජගක් ලියනගේ'}, {id:125, name:'D S V රණවීර'},
+  {id:126, name:'එස් ටි අර් බන්ඩර'}, {id:127, name:'R Renuka Shayamali Fernando'}, {id:128, name:'A L බුද්ධික සදරුවන්'}, {id:129, name:'චන්දන මනෝජ් සමරතුංග'}, {id:130, name:'සු එස් කොඩිකාර'},
+  {id:131, name:'R P D P රාජපක්ෂ'}, {id:132, name:'K G L සිල්වා'}, {id:133, name:'R Kanthi Pranandu'}, {id:134, name:'පී.එම්.ඒ එල් පෙරේරා'}, {id:135, name:'ගිහාන් මිල්රොයි පීටර්'},
+  {id:136, name:'ඉලේපෙරුම ආරච්චිගේ ගීතානි මල්ලිකා'}, {id:137, name:'ජෙ පි ටී කුමාර'}, {id:138, name:'පී වල්ලව ආරච්චි'}, {id:139, name:'එල් ඩි ඩි එල් ජයතිලක'}, {id:140, name:'ටි.එන්. ලොකුගේ'},
+  {id:141, name:'එස්... කනිල්'}, {id:142, name:'එම් කමිල දසංග'}, {id:143, name:'එම් ඒ අනුර ලක්ෂන් පෙ'}, {id:144, name:'S H සිරිල්'}, {id:145, name:'R P D D D රාජපක්ෂ'},
+  {id:146, name:'K D සුමිත්'}, {id:147, name:'T E D นලින්ද'}, {id:148, name:'ඉන්නාම් ඉෆ්නිකාර්'}, {id:149, name:'H මුදියව්සේලාගේ සිරිසේන'}, {id:150, name:'හේවා ගේ චන්ද්‍රවතී දඹරේ'},
+  {id:151, name:'C J කත්‍රිආරච්චි'}, {id:152, name:'H සිරිවර්ධන'}, {id:153, name:'A R සිරියර්ධන'}, {id:154, name:'M M චානග පුෂ්පකුමාර'}, {id:155, name:'සැබෑ නම'},
+  {id:156, name:'T නන්දවතී පෙරෙරා'}, {id:157, name:'D Bombuwala'}, {id:158, name:'J K තිමේෂ් ආර් ජයවීර'}, {id:159, name:'දිවිගල්ලගේ ස්වර්ණලා'}, {id:160, name:'ඒ ගාමිණි ලිවිනිස්'},
+  {id:161, name:'කටුවාවලගේ දොන් නලින් ප්‍රසන්න'}, {id:162, name:'ඩී.ඒ.පී.ගමගෙ'}, {id:163, name:'A U කළුආරච්චි'}, {id:164, name:'බී.ඩී.එල්. ලහිරු පැතුම් පියමන්ත'}, {id:165, name:'K M M ශ්‍රීනාත් ශාන්තකුමාර'},
+  {id:166, name:'එම්.පී.එල්.ද සිල්වා'}, {id:167, name:'P A P ධර්මබන්ධු'}, {id:168, name:'Y ජයසේකර'}, {id:169, name:'S A D M සංජු'}, {id:170, name:'උපුල් විතානගේ'},
+  {id:171, name:'W පත්මනුමාර'}, {id:172, name:'M අජිත් ධර්මසිරි'}, {id:173, name:'P I මධූසංඛ'}, {id:174, name:'D K D සුනිල් කරුණාතිලක'}, {id:175, name:'U L L F පෙරේරා'},
+  {id:176, name:'B S හරින්ද්‍ර පෙරේරා'}
 ];
 
-function searchMember(){
-  const id=parseInt(document.getElementById('memberId').value);
-  const member=members.find(m=>m.id===id);
-  const result=document.getElementById('result');
-  if(!member||isNaN(id)){
-    result.innerHTML='<div class="error-box">❌ සාමාජිකයා හමු නොවීය. කරුණාකර නිවැරදි අංකයක් (1–176) ඇතුලත් කරන්න.</div>';
+// ⚙️ ගූගල් ශීට් එකේ තිබුණු සැබෑ හිඟ මුදල් දත්ත (Hardcoded Real Exceptions)
+const dueRecords = {
+  '2025': {
+    12: Array(12).fill('Due'),
+    18: ['Paid', ...Array(11).fill('Due')],
+    38: Array(12).fill('Due'),
+    50: ['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due'],
+    58: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    61: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    64: Array(12).fill('Due'),
+    66: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    69: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    72: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    73: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    79: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    89: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    94: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    98: ['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due'],
+    99: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    102: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    104: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    106: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    107: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    110: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    113: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    114: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    116: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    123: ['Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due'],
+    128: ['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due','Due'],
+    130: ['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due','Due'],
+    131: ['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due','Due'],
+    132: ['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due'],
+    135: ['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due'],
+    136: ['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due'],
+    141: ['Paid','Paid','Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due'],
+    142: ['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due','Due','Due'],
+    143: ['Paid','Paid','Paid','Paid','Due','Due','Due','Due','Due','Due','Due','Due'],
+    154: ['Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Paid','Due','Due','Due']
+  }
+};
+
+// 🔄 දත්ත ව්‍යුහය ස්වයංක්‍රීයව සකස් කිරීමේ Logic එක
+for (let year of ['2023', '2024', '2025', '2026']) {
+  for (let i = 1; i <= 176; i++) {
+    if (dueRecords[year] && dueRecords[year][i]) {
+      paymentRecords[year][i] = dueRecords[year][i];
+    } else {
+      paymentRecords[year][i] = Array(12).fill('Paid'); // Default සියල්ල ගෙවා ඇත
+    }
+  }
+}
+
+let currentSearchedId = null;
+let currentSelectedYear = '2026'; // Default වසර 2026/2027 පෙන්වයි
+
+// ── සෙවීමේ ප්‍රධාන ශ්‍රිතය ──
+function searchMember() {
+  const idInput = document.getElementById('memberId').value;
+  const id = parseInt(idInput);
+  const resultDiv = document.getElementById('result');
+  
+  if (isNaN(id) || id < 1 || id > 176) {
+    resultDiv.innerHTML = `<div class="error-box" style="background:#fee2e2; color:#b91c1c; padding:15px; border-radius:var(--radius-sm); font-weight:600; text-align:center; border:1px solid #fca5a5;">❌ සාමාජිකයා හමු නොවීය. කරුණාකර නිවැරදි අංකයක් (1–176) ඇතුලත් කරන්න.</div>`;
+    currentSearchedId = null;
+    removeTabs();
     return;
   }
-  const paidCount=member.payments.filter(p=>p==='Paid').length;
-  const dueCount=12-paidCount;
-  let rows='';
-  months.forEach((month,i)=>{
-    const isPaid=member.payments[i]==='Paid';
-    rows+=`<tr><td>${month}</td><td>${isPaid?'<span class="badge paid">✅ ගෙවා ඇත</span>':'<span class="badge due">⚠️ හිඟ</span>'}</td></tr>`;
+  
+  currentSearchedId = id;
+  // පළමු වරට සොයන විට Tabs බ්ලොක් එක සාදයි (නැතහොත් පවතින එක යාවත්කාලීන කරයි)
+  createYearTabs();
+  renderPaymentTable();
+}
+
+// 🎛️ Luxury Tabs සාදන සහ කළමනාකරණය කරන ශ්‍රිතය
+function createYearTabs() {
+  let tabsWrapper = document.getElementById('dynamicYearTabs');
+  if (!tabsWrapper) {
+    tabsWrapper = document.createElement('div');
+    tabsWrapper.id = 'dynamicYearTabs';
+    tabsWrapper.style = "margin: 20px 0 15px 0; background: var(--gray-1); padding: 5px; border-radius: var(--radius-sm); border: 1px solid var(--gray-2); display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px;";
+    
+    const years = [
+      { code: '2023', label: '2023/24' },
+      { code: '2024', label: '2024/25' },
+      { code: '2025', label: '2025/26' },
+      { code: '2026', label: '2026/27' }
+    ];
+    
+    years.forEach(y => {
+      const btn = document.createElement('button');
+      btn.className = 'year-tab-btn';
+      btn.id = 'tab-' + y.code;
+      btn.innerText = y.label;
+      btn.style = "border:none; padding:10px 2px; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; background:none; color:var(--text-soft); font-family:inherit; transition:all 0.3s;";
+      btn.onclick = () => switchYear(y.code);
+      tabsWrapper.appendChild(btn);
+    });
+    
+    const resultDiv = document.getElementById('result');
+    resultDiv.parentNode.insertBefore(tabsWrapper, resultDiv);
+  }
+}
+
+function removeTabs() {
+  const tabsWrapper = document.getElementById('dynamicYearTabs');
+  if (tabsWrapper) tabsWrapper.remove();
+}
+
+function switchYear(year) {
+  if (!currentSearchedId) return;
+  currentSelectedYear = year;
+  renderPaymentTable();
+}
+
+// 📊 වගුව දර්ශනය කරන ශ්‍රිතය
+function renderPaymentTable() {
+  const resultDiv = document.getElementById('result');
+  const member = members.find(m => m.id === currentSearchedId);
+  
+  // Tabs වල Active ස්ටයිල් එක මාරු කිරීම
+  document.querySelectorAll('.year-tab-btn').forEach(btn => {
+    btn.style.background = 'none';
+    btn.style.color = 'var(--text-soft)';
+    btn.style.boxShadow = 'none';
   });
-  result.innerHTML=`
-    <div class="member-header">
+  
+  const activeTab = document.getElementById('tab-' + currentSelectedYear);
+  if (activeTab) {
+    activeTab.style.background = 'var(--white)';
+    activeTab.style.color = 'var(--navy)';
+    activeTab.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
+  }
+  
+  const yearData = paymentRecords[currentSelectedYear][currentSearchedId];
+  const paidCount = yearData.filter(p => p === 'Paid').length;
+  const dueCount = 12 - paidCount;
+  
+  let yearDisplay = '';
+  if(currentSelectedYear === '2023') yearDisplay = '2023/2024';
+  if(currentSelectedYear === '2024') yearDisplay = '2024/2025';
+  if(currentSelectedYear === '2025') yearDisplay = '2025/2026';
+  if(currentSelectedYear === '2026') yearDisplay = '2026/2027';
+
+  let rows = '';
+  months.forEach((month, i) => {
+    const isPaid = yearData[i] === 'Paid';
+    rows += `<tr>
+              <td><strong>${month}</strong></td>
+              <td>${isPaid ? '<span class="badge paid">✅ Γෙවා ඇත</span>' : '<span class="badge due">⚠️ හිඟ මුදල්</span>'}</td>
+             </tr>`;
+  });
+  
+  resultDiv.innerHTML = `
+    <div class="member-header" style="border-left: 4px solid var(--gold);">
       <div class="member-header-avatar">👤</div>
-      <div><h3>${member.name}</h3><p>සාමාජික අංකය: <strong>${member.id}</strong></p></div>
+      <div>
+        <h3>${member.name}</h3>
+        <p>සාමාජික අංකය: <strong>#${member.id}</strong> | වර්ෂය: <strong>${yearDisplay}</strong></p>
+      </div>
     </div>
     <div class="summary-pills">
-      <span class="pill pill-paid">✅ ගෙවූ: ${paidCount}</span>
-      <span class="pill pill-due">⚠️ හිඟ: ${dueCount}</span>
+      <span class="pill pill-paid">✅ ගෙවූ මාස: ${paidCount}</span>
+      <span class="pill pill-due">⚠️ හිඟ මාස: ${dueCount}</span>
     </div>
     <div class="payment-table-wrap">
       <table>
-        <thead><tr><th>මාසය</th><th>गෙවීම් තත්ත්වය</th></tr></thead>
+        <thead><tr><th>මාසය</th><th>गෙවීම් තත්ත්වය (${yearDisplay})</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;
 }
 
-function resetSearch(){
-  document.getElementById('memberId').value='';
-  document.getElementById('result').innerHTML='';
+function resetSearch() {
+  document.getElementById('memberId').value = '';
+  document.getElementById('result').innerHTML = '';
+  removeTabs();
+  currentSearchedId = null;
 }
 
-document.getElementById('memberId').addEventListener('keypress',e=>{if(e.key==='Enter')searchMember();});
-
+document.getElementById('memberId').addEventListener('keypress', e => { if (e.key === 'Enter') searchMember(); });
 // ── SCROLL REVEAL ──
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('active');});
