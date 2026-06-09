@@ -1499,7 +1499,7 @@ function renderPaymentTable() {
     const isPaid = yearData[i] === 'Paid';
     rows += `<tr>
               <td><strong>${month}</strong></td>
-              <td>${isPaid ? '<span class="badge paid">✅ Γෙවා ඇත</span>' : '<span class="badge due">⚠️ හිඟ මුදල්</span>'}</td>
+              <td>${isPaid ? '<span class="badge paid">✅ ගෙවා ඇත</span>' : '<span class="badge due">⚠️ හිඟ මුදල්</span>'}</td>
              </tr>`;
   });
   
@@ -1517,7 +1517,7 @@ function renderPaymentTable() {
     </div>
     <div class="payment-table-wrap">
       <table>
-        <thead><tr><th>මාසය</th><th>गෙවීම් තත්ත්වය (${yearDisplay})</th></tr></thead>
+        <thead><tr><th>මාසය</th><th>ගෙවීම් තත්ත්වය (${yearDisplay})</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;
