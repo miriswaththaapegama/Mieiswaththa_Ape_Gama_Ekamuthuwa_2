@@ -1643,5 +1643,48 @@ function showGalleryDetails(title) {
 function closeInfoModal(){ document.getElementById('infoModal').style.display='none'; }
 </script>
 
+<script>
+...
+</script>
+
+<!-- DOCUMENT MODAL -->
+<div class="modal-overlay" id="docModalOverlay">
+
+  <div class="modal document-modal">
+
+    <div class="modal-header">
+      <h2 id="docModalTitle">ලේඛන නාමය</h2>
+
+      <button class="modal-close"
+        onclick="closeDocModal()">
+        ×
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="document-summary-box">
+        <h3>📑 ලේඛන සාරාංශය</h3>
+
+        <p id="docModalSummary">
+          ලේඛන විස්තරය
+        </p>
+      </div>
+
+      <a id="docPdfBtn"
+         href="#"
+         target="_blank"
+         class="pdf-view-btn">
+
+         ⬇️ PDF ලේඛනය බලන්න
+
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
 </body>
 </html>
