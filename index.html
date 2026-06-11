@@ -711,32 +711,78 @@ footer a:hover{text-decoration:underline;}
 
 <!-- ── DOCUMENTS ── -->
 <section class="section reveal" id="documents">
-  <h2 class="section-title">📄 ලිපි <span>ලේඛන</span><span class="sub">සංවිධානයේ නිල ලිපි ලේඛන</span></h2>
+  <h2 class="section-title">
+    📄 ලිපි <span>ලේඛන</span>
+    <span class="sub">සංවිධානයේ නිල ලිපි ලේඛන</span>
+  </h2>
+
   <div class="docs-grid">
-    <div class="doc-card" onclick="openModal('constitutionModal')">
+
+    <div class="doc-card"
+      onclick="openDocModal(
+      'සංශෝධිත ව්‍යවස්ථාව',
+      'සංවිධානයේ සංශෝධිත ව්‍යවස්ථාව, අරමුණු, සාමාජිකත්ව නීති සහ පරිපාලන ක්‍රමවේද ඇතුළත් නිල ලේඛනය.',
+      'pdfs/constitution.pdf'
+      )">
+
       <span class="doc-icon">📜</span>
-      <h3>සමිති ව්‍යවස්ථාව</h3>
-      <p>සංශෝධිත ව්‍යවස්ථාව</p>
+      <h3>සංශෝධිත ව්‍යවස්ථාව</h3>
+      <p>නිල ව්‍යවස්ථා ලේඛනය</p>
       <span class="doc-badge">👆 ක්ලික් කරන්න</span>
     </div>
-    <div class="doc-card" onclick="openModal('annualModal')">
+
+    <div class="doc-card"
+      onclick="openDocModal(
+      'මහා සභා වාර්තාව',
+      'මහා සභා රැස්වීමේ තීරණ, සාකච්ඡා සහ අනුමත කරුණු ඇතුළත් වාර්තාව.',
+      'pdfs/general-meeting-report.pdf'
+      )">
+
       <span class="doc-icon">📊</span>
-      <h3>වාර්ෂික වාර්තා</h3>
-      <p>2024/2025 සාමාන්‍ය රැස්වීම</p>
+      <h3>මහා සභා වාර්තාව</h3>
+      <p>නිල රැස්වීම් වාර්තාව</p>
       <span class="doc-badge">👆 ක්ලික් කරන්න</span>
     </div>
-    <div class="doc-card" onclick="openModal('minutesModal')">
-      <span class="doc-icon">📋</span>
-      <h3>රැස්වීම් වාර්තා</h3>
-      <p>Minutes of Meetings</p>
-      <span class="doc-badge">👆 ක්ලික් කරන්න</span>
-    </div>
-    <div class="doc-card" onclick="openModal('lotteryModal')">
+
+    <div class="doc-card"
+      onclick="openDocModal(
+      'රු 50,000 / රු 100,000 සීට්ටු විස්තර වාර්තාව',
+      'සාමාජික සීට්ටු වැඩසටහන්, ගෙවීම් හා ත්‍යාග විස්තර ඇතුළත් ලේඛනය.',
+      'pdfs/lottery-report.pdf'
+      )">
+
       <span class="doc-icon">🎟️</span>
-      <h3>රු. 50,000 සීට්ටු ලේඛනය</h3>
-      <p>සාමාජික ත්‍යාග ක්‍රමය</p>
+      <h3>රු 50,000 / රු 100,000 සීට්ටු විස්තර</h3>
+      <p>සාමාජික ප්‍රතිලාභ වාර්තාව</p>
       <span class="doc-badge">👆 ක්ලික් කරන්න</span>
     </div>
+
+    <div class="doc-card"
+      onclick="openDocModal(
+      'කාරක සභා වාර්තාව',
+      'කාරක සභා රැස්වීම්, තීරණ සහ ඉදිරි වැඩසටහන් පිළිබඳ නිල වාර්තාව.',
+      'pdfs/committee-report.pdf'
+      )">
+
+      <span class="doc-icon">📋</span>
+      <h3>කාරක සභා වාර්තාව</h3>
+      <p>නිල කාරක සභා ලේඛනය</p>
+      <span class="doc-badge">👆 ක්ලික් කරන්න</span>
+    </div>
+
+    <div class="doc-card"
+      onclick="openDocModal(
+      'දන්සැල සහ ආධාර මුදල් වාර්තාව',
+      'දන්සැල්, පරිත්‍යාග සහ ආධාර මුදල් ලැබීම් හා වියදම් ඇතුළත් මූල්‍ය වාර්තාව.',
+      'pdfs/donation-report.pdf'
+      )">
+
+      <span class="doc-icon">🍚</span>
+      <h3>දන්සැල සහ ආධාර මුදල් වාර්තාව</h3>
+      <p>මූල්‍ය හා දායකත්ව වාර්තාව</p>
+      <span class="doc-badge">👆 ක්ලික් කරන්න</span>
+    </div>
+
   </div>
 </section>
 
